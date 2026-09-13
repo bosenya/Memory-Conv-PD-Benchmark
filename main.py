@@ -1,5 +1,4 @@
 import os
-import settings
 from agent import Agent, get_key, initialize_memory, reset_memory
 from game_rule import tell_game_rule, tell_game_rule_no_conv
 
@@ -27,6 +26,7 @@ PAYOFF = [
 
 ###########################
 ## Step 1: Create agents ##
+
 agents = []
 agent_id = 1
 for model in POOL:
@@ -34,8 +34,6 @@ for model in POOL:
         agents.append(Agent(agent_id, model, get_key("key")))
         agent_id += 1
 
-
-## Initialize Memory
 for a in agents:
     initialize_memory(a.id)
 
@@ -61,5 +59,5 @@ for a in agents:
 
 
 
-
-reset_memory()
+for a in agents:
+    reset_memory(a.id)
